@@ -25,7 +25,7 @@ document.body.appendChild(renderer.domElement);
 
 /* Creating the drag and drop system */
 
-const controls = new OrbitControls(camera, renderer.domElement);
+const controls = new OrbitControls(camera, renderer.domElement);
 controls.target.set(0, 0, 0);
 controls.dampingFactor = 0.75;
 controls.enableDamping = true;
