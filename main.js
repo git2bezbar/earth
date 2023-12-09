@@ -53,16 +53,6 @@ scene.add(ambientLight);
 
 (async function animate() {
 
-  /* Loading all the textures */
-
-  let textures = {
-    bump: await new THREE.TextureLoader().loadAsync("assets/earthbump.jpg"),
-    map: await new THREE.TextureLoader().loadAsync("assets/earthmap.jpg"),
-    spec: await new THREE.TextureLoader().loadAsync("assets/earthspec.jpg"),
-    planeTrailMask: await new THREE.TextureLoader().loadAsync("assets/mask.png"),
-    back: await new THREE.TextureLoader().loadAsync("assets/surprise.png")
-  };
-
   /* Creating a space background with stars */
 
   const starVertices = [];
@@ -90,7 +80,7 @@ scene.add(ambientLight);
 
   for (let i = 1; i <= 10; i++) {
     planesData.push(
-      makePlane(plane, textures.planeTrailMask, scene),
+      makePlane(plane, new THREE.TextureLoader().load("assets/mask.png"), scene),
     );
   }
 
@@ -99,9 +89,9 @@ scene.add(ambientLight);
   let sphere = new THREE.Mesh(
     new THREE.SphereGeometry(10, 70, 70),
     new THREE.MeshPhysicalMaterial({
-      map: textures.map,
-      roughnessMap: textures.spec,
-      bumpMap: textures.bump,
+      map: new THREE.TextureLoader().load("assets/earthmap.jpg"),
+      roughnessMap: new THREE.TextureLoader().load("assets/earthspec.jpg"),
+      bumpMap: new THREE.TextureLoader().load("assets/earthbump.jpg"),
       bumpScale: 5,
       sheen: 1,
       sheenRoughness: 0.75,
@@ -118,10 +108,10 @@ scene.add(ambientLight);
   let surprise = new THREE.Mesh(
     new THREE.SphereGeometry(9.9, 70, 70),
     new THREE.MeshPhysicalMaterial({
-      map: textures.back,
+      map: new THREE.TextureLoader().load("assets/surprise.png"),
       side: THREE.BackSide,
-      roughnessMap: textures.spec,
-      bumpMap: textures.bump,
+      roughnessMap: new THREE.TextureLoader().load("assets/earthspec.jpg"),
+      bumpMap: new THREE.TextureLoader().load("assets/earthbump.jpg"),
       bumpScale: 5,
       sheen: 1,
       sheenRoughness: 0.75,
